@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>打和招呼</h1>
+    <introduce title="早上好"></introduce>
+    <my-list :itmes="lessons"/>
+</div>
+
+</body>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //定义全局组件
+    Vue.component("introduce",{
+       template:'<h1>{{title}}</h1>',
+        props:['title']//title 对应上一行的title,表示一个属性，用来接收父组件传通的数据
+    });
+    //定义一个局部组件
+    const myList ={
+        port:{
+            item:{
+                type:Array,
+                default: [],
+                required:true
+            }
+        }
+    }
+
+    //创建<div id=“app”>的vue对象
+    var app = new Vue({
+        el:"#app",
+        comments:{
+            myList
+        }
+    });
+</script>
+</html>
